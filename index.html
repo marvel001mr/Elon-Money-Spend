@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spend Elon Musk's Money | Billionaire Spending Simulator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e4032e;
+            --secondary-color: #0079bf;
+            --bg-color: #0a0e17;
+            --text-color: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 35%, rgba(255, 0, 0, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 85% 65%, rgba(0, 128, 255, 0.05) 0%, transparent 25%);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0a0e17 0%, #1a1f2c 100%);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #e4032e, #0079bf);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-card {
+            background: rgba(26, 31, 44, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid #2a3752;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .rocket-icon {
+            animation: rocket 2s infinite alternate;
+            color: #e4032e;
+        }
+        
+        @keyframes rocket {
+            from { transform: translateY(0px) rotate(0deg); }
+            to { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        .tesla-icon {
+            animation: tesla 3s infinite alternate;
+            color: #0079bf;
+        }
+        
+        @keyframes tesla {
+            from { transform: translateX(0px); }
+            to { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="py-6 px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-rocket text-2xl rocket-icon"></i>
+                <span class="text-xl font-bold">ElonMoney</span>
+            </div>
+            <div>
+                <a href="Elon-Money-Spend.html" class="btn-primary px-6 py-2 rounded-full font-semibold">Play Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient py-20 px-4">
+        <div class="container mx-auto text-center">
+            <div class="flex items-center justify-center gap-4 mb-6">
+                <i class="fas fa-rocket text-4xl rocket-icon"></i>
+                <h1 class="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-blue-500">
+                    Spend Elon Musk's Money
+                </h1>
+                <i class="fas fa-car text-4xl tesla-icon"></i>
+            </div>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-10">
+                Ever wondered what it's like to have billions at your fingertips? Experience the thrill of spending $200 billion in our interactive simulator!
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="Elon-Money-Spend.html" class="btn-primary px-8 py-4 rounded-lg font-bold text-lg">
+                    Start Spending <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#how-it-works" class="px-8 py-4 rounded-lg font-bold text-lg border border-blue-400 text-blue-400 hover:bg-blue-900/30 transition">
+                    How It Works
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-6 rounded-xl bg-gray-900/50 border border-gray-800">
+                    <div class="text-4xl font-bold text-blue-400 mb-2">$200B</div>
+                    <div class="text-gray-400">Starting Fortune</div>
+                </div>
+                <div class="p-6 rounded-xl bg-gray-900/50 border border-gray-800">
+                    <div class="text-4xl font-bold text-red-400 mb-2">100+</div>
+                    <div class="text-gray-400">Items to Buy</div>
+                </div>
+                <div class="p-6 rounded-xl bg-gray-900/50 border border-gray-800">
+                    <div class="text-4xl font-bold text-purple-400 mb-2">∞</div>
+                    <div class="text-gray-400">Possibilities</div>
+                </div>
+                <div class="p-6 rounded-xl bg-gray-900/50 border border-gray-800">
+                    <div class="text-4xl font-bold text-green-400 mb-2">100%</div>
+                    <div class="text-gray-400">Free Fun</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-16 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">How It Works</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card p-8 rounded-xl">
+                    <div class="text-blue-400 text-4xl mb-4">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Start with $200 Billion</h3>
+                    <p class="text-gray-400">
+                        You begin with Elon Musk's estimated net worth of $200 billion. That's more money than you could spend in a lifetime!
+                    </p>
+                </div>
+                
+                <div class="feature-card p-8 rounded-xl">
+                    <div class="text-red-400 text-4xl mb-4">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Buy Anything You Want</h3>
+                    <p class="text-gray-400">
+                        Choose from hundreds of items - from Big Macs to private islands, sports teams to space rockets.
+                    </p>
+                </div>
+                
+                <div class="feature-card p-8 rounded-xl">
+                    <div class="text-green-400 text-4xl mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Track Your Spending</h3>
+                    <p class="text-gray-400">
+                        Watch your balance update in real-time as you buy and sell items. Can you spend it all?
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Items Preview -->
+    <section class="py-16 px-4 bg-gray-900/50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">What Can You Buy?</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="bg-gray-800 rounded-lg p-4 mb-3 h-32 flex items-center justify-center">
+                        <img src="https://neal.fun/spend/images/tesla.jpg" alt="Tesla" class="h-full object-contain">
+                    </div>
+                    <h3 class="font-bold">Tesla</h3>
+                    <p class="text-blue-400">$75,000</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-gray-800 rounded-lg p-4 mb-3 h-32 flex items-center justify-center">
+                        <img src="https://neal.fun/spend/images/mansion.jpg" alt="Mansion" class="h-full object-contain">
+                    </div>
+                    <h3 class="font-bold">Mansion</h3>
+                    <p class="text-blue-400">$45M</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-gray-800 rounded-lg p-4 mb-3 h-32 flex items-center justify-center">
+                        <img src="https://neal.fun/spend/images/yacht.jpg" alt="Yacht" class="h-full object-contain">
+                    </div>
+                    <h3 class="font-bold">Yacht</h3>
+                    <p class="text-blue-400">$7.5M</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-gray-800 rounded-lg p-4 mb-3 h-32 flex items-center justify-center">
+                        <img src="https://neal.fun/spend/images/nba-team.jpg" alt="NBA Team" class="h-full object-contain">
+                    </div>
+                    <h3 class="font-bold">NBA Team</h3>
+                    <p class="text-blue-400">$2.12B</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="Elon-Money-Spend.html" class="btn-primary px-8 py-4 rounded-lg font-bold text-lg inline-block">
+                    See All Items <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-8 md:p-12">
+                <div class="flex items-center mb-6">
+                    <div class="text-yellow-400 text-2xl mr-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="text-gray-400">5/5</span>
+                </div>
+                <blockquote class="text-xl italic mb-8">
+                    "I never realized how much $200 billion really is until I tried to spend it all. This game puts wealth into perspective in the most entertaining way possible!"
+                </blockquote>
+                <div class="flex items-center">
+                    <div class="w-12 h-12 rounded-full bg-blue-400 mr-4 overflow-hidden">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="font-bold">Sarah J.</div>
+                        <div class="text-gray-400 text-sm">Verified Player</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 bg-gradient-to-r from-blue-900/30 to-red-900/30">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Experience Billionaire Life?</h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+                Join thousands of players who've tried (and failed) to spend Elon's entire fortune!
+            </p>
+            <a href="Elon-Money-Spend.html" class="btn-primary px-10 py-5 rounded-lg font-bold text-xl inline-block">
+                Start Spending Now <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12 px-4 border-t border-gray-800">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-6 md:mb-0">
+                    <i class="fas fa-rocket text-2xl rocket-icon"></i>
+                    <span class="text-xl font-bold">Spend Elon's Money</span>
+                </div>
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="text-gray-400 text-sm">
+                    © 2024 Spend Elon's Money. Not affiliated with Elon Musk.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
