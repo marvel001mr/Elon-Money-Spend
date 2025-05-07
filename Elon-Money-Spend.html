@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SEO Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spend Elon Musk's money in this fun simulation game! Buy yachts, Teslas, and even Twitter. How would you spend $200 billion?">
+    <meta name="keywords" content="Elon Musk, money game, spending simulator, billionaire game, Tesla, SpaceX">
+    <meta name="author" content="StarkAppsp">
+    <meta property="og:title" content="Spend Elon Musk's Money">
+    <meta property="og:description" content="A fun game where you spend Elon Musk's $200 billion fortune!">
+    <meta property="og:image" content="https://yourwebsite.com/elon-money-game-preview.jpg">
+    <meta property="og:url" content="https://yourwebsite.com/spend-elon-money">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <title>Spend Elon Musk's Money | Billionaire Spending Simulator</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" as="style">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Google AdSense (Replace YOUR_PUBLISHER_ID) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3789956111671266" crossorigin="anonymous"></script>
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Spend Elon Musk's Money",
+      "description": "A fun game where you spend Elon Musk's $200 billion fortune!",
+      "url": "https://yourwebsite.com/spend-elon-money",
+      "applicationCategory": "Game",
+      "operatingSystem": "Web"
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #e4032e;
+            --secondary-color: #0079bf;
+            --bg-color: #0a0e17;
+            --text-color: #f8fafc;
+            --card-bg: #1a1f2c;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 35%, rgba(255, 0, 0, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 85% 65%, rgba(0, 128, 255, 0.05) 0%, transparent 25%);
+        }
+        
+        .money-counter {
+            background: linear-gradient(135deg, #0079bf, #e4032e);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .item-card {
+            background-color: var(--card-bg);
+            transition: all 0.3s ease;
+            border: 1px solid #2a3752;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-counter {
+            transition: all 0.2s ease;
+        }
+        
+        .btn-counter:hover {
+            transform: scale(1.05);
+        }
+        
+        .buy-btn {
+            background-color: var(--primary-color);
+        }
+        
+        .sell-btn {
+            background-color: var(--secondary-color);
+        }
+        
+        .buy-btn:disabled,
+        .sell-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .qty-display {
+            background-color: #2a3752;
+            min-width: 60px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a1f2c, #0a0e17);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0, 128, 255, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .spent-text {
+            color: #f43f5e;
+        }
+        
+        .remaining-text {
+            color: #0ea5e9;
+        }
+        
+        .rocket-icon {
+            animation: rocket 2s infinite alternate;
+            color: #e4032e;
+        }
+        
+        @keyframes rocket {
+            from { transform: translateY(0px) rotate(0deg); }
+            to { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        .tesla-icon {
+            animation: tesla 3s infinite alternate;
+            color: #0079bf;
+        }
+        
+        @keyframes tesla {
+            from { transform: translateX(0px); }
+            to { transform: translateX(10px); }
+        }
+        
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            opacity: 0.3;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.3; }
+        }
+
+        /* Ad Container Styling */
+        .ad-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 20px auto;
+            text-align: center;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Reset Button */
+        .reset-btn {
+            background: linear-gradient(135deg, #ff5e62, #ff9966);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(255, 94, 98, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="starfield" id="starfield"></div>
+
+    <!-- Header Ad Slot -->
+    <div class="ad-container max-w-4xl mx-auto">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+             data-ad-slot="HEADER_AD_SLOT"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <header class="py-10 mb-6">
+        <div class="container mx-auto text-center relative z-10">
+            <div class="flex items-center justify-center gap-4 mb-3">
+                <i class="fas fa-rocket text-3xl rocket-icon"></i>
+                <h1 class="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-blue-500">Spend Elon Musk's Money</h1>
+                <i class="fas fa-car text-3xl tesla-icon"></i>
+            </div>
+            <p class="text-lg text-gray-300 max-w-2xl mx-auto">Experience what it's like to have the fortune of the SpaceX and Tesla CEO, one of the richest people on Earth</p>
+            <button class="reset-btn mt-4" id="reset-btn">Reset Game</button>
+        </div>
+    </header>
+
+    <div class="money-counter text-center py-5 mb-10">
+        <h2 class="money-amount text-4xl md:text-6xl font-bold">$200,000,000,000</h2>
+        <div class="flex justify-center gap-10 mt-3">
+            <div>
+                <p class="text-gray-300 uppercase tracking-wide text-sm">SPENT</p>
+                <p class="spent-text text-xl md:text-2xl font-semibold" id="spent-amount">$0</p>
+            </div>
+            <div>
+                <p class="text-gray-300 uppercase tracking-wide text-sm">REMAINING</p>
+                <p class="remaining-text text-xl md:text-2xl font-semibold" id="remaining-amount">$200,000,000,000</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Ad (Desktop Only) -->
+    <div class="hidden lg:block fixed right-4 top-1/2 transform -translate-y-1/2 w-32">
+        <div class="ad-container h-96">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                 data-ad-slot="SIDEBAR_AD_SLOT"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 pb-16">
+        <div id="items-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Item cards will be dynamically generated here -->
+        </div>
+
+        <!-- Mid-content Ad -->
+        <div class="ad-container max-w-4xl mx-auto my-12">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                 data-ad-slot="MID_CONTENT_AD_SLOT"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 py-8 mt-16 text-center border-t border-gray-800">
+        <div class="container mx-auto">
+            <!-- Footer Ad -->
+            <div class="ad-container max-w-4xl mx-auto mb-8">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                     data-ad-slot="FOOTER_AD_SLOT"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+            <div class="flex justify-center space-x-4 mb-6">
+                <i class="fab fa-twitter text-2xl text-blue-400"></i>
+                <i class="fab fa-space-awesome text-2xl text-red-500"></i>
+                <i class="fab fa-tesla text-2xl text-blue-500"></i>
+            </div>
+            <p class="mb-2">A fun experiment to explore wealth disparity. Not affiliated with Elon Musk.</p>
+            <p class="text-sm text-gray-400">© 2024 Spend Elon's Money. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create starfield background
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            const numberOfStars = 150;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random position
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random animation delay
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                
+                starfield.appendChild(star);
+            }
+        }
+
+        // Items data
+        const items = [
+            { name: "Big Mac", price: 2, image: "https://neal.fun/spend/images/big-mac.jpg" },
+            { name: "Flip Flops", price: 3, image: "https://neal.fun/spend/images/flip-flops.jpg" },
+            { name: "Coca-Cola Pack", price: 5, image: "https://neal.fun/spend/images/coca-cola-pack.jpg" },
+            { name: "Movie Ticket", price: 12, image: "https://neal.fun/spend/images/movie-ticket.jpg" },
+            { name: "Book", price: 15, image: "https://neal.fun/spend/images/book.jpg" },
+            { name: "Lobster Dinner", price: 45, image: "https://neal.fun/spend/images/lobster-dinner.jpg" },
+            { name: "Video Game", price: 60, image: "https://neal.fun/spend/images/video-game.jpg" },
+            { name: "Amazon Echo", price: 99, image: "https://neal.fun/spend/images/amazon-echo.jpg" },
+            { name: "Year of Netflix", price: 100, image: "https://neal.fun/spend/images/year-of-netflix.jpg" },
+            { name: "Air Jordans", price: 125, image: "https://neal.fun/spend/images/air-jordans.jpg" },
+            { name: "Airpods", price: 199, image: "https://neal.fun/spend/images/airpods.jpg" },
+            { name: "Gaming Console", price: 299, image: "https://neal.fun/spend/images/gaming-console.jpg" },
+            { name: "Drone", price: 350, image: "https://neal.fun/spend/images/drone.jpg" },
+            { name: "Smartphone", price: 699, image: "https://neal.fun/spend/images/smartphone.jpg" },
+            { name: "Bike", price: 800, image: "https://neal.fun/spend/images/bike.jpg" },
+            { name: "Kitten", price: 1500, image: "https://neal.fun/spend/images/kitten.jpg" },
+            { name: "Puppy", price: 1500, image: "https://neal.fun/spend/images/puppy.jpg" },
+            { name: "Auto Rickshaw", price: 2300, image: "https://neal.fun/spend/images/auto-rickshaw.jpg" },
+            { name: "Horse", price: 2500, image: "https://neal.fun/spend/images/horse.jpg" },
+            { name: "Acre of Farmland", price: 3000, image: "https://neal.fun/spend/images/acre-of-farmland.jpg" },
+            { name: "Designer Handbag", price: 5500, image: "https://neal.fun/spend/images/designer-handbag.jpg" },
+            { name: "Hot Tub", price: 6000, image: "https://neal.fun/spend/images/hot-tub.jpg" },
+            { name: "Luxury Wine", price: 7000, image: "https://neal.fun/spend/images/luxury-wine.jpg" },
+            { name: "Diamond Ring", price: 10000, image: "https://neal.fun/spend/images/diamond-ring.jpg" },
+            { name: "Jet Ski", price: 12000, image: "https://neal.fun/spend/images/jet-ski.jpg" },
+            { name: "Rolex", price: 15000, image: "https://neal.fun/spend/images/rolex.jpg" },
+            { name: "Ford F-150", price: 30000, image: "https://neal.fun/spend/images/ford-f-150.jpg" },
+            { name: "Tesla", price: 75000, image: "https://neal.fun/spend/images/tesla.jpg" },
+            { name: "Monster Truck", price: 150000, image: "https://neal.fun/spend/images/monster-truck.jpg" },
+            { name: "Ferrari", price: 250000, image: "https://neal.fun/spend/images/ferrari.jpg" },
+            { name: "Single Family Home", price: 300000, image: "https://neal.fun/spend/images/single-family-home.jpg" },
+            { name: "Gold Bar", price: 700000, image: "https://neal.fun/spend/images/gold-bar.jpg" },
+            { name: "McDonalds Franchise", price: 1500000, image: "https://neal.fun/spend/images/mcdonalds-franchise.jpg" },
+            { name: "Superbowl Ad", price: 5250000, image: "https://neal.fun/spend/images/superbowl-ad.jpg" },
+            { name: "Yacht", price: 7500000, image: "https://neal.fun/spend/images/yacht.jpg" },
+            { name: "M1 Abrams", price: 8000000, image: "https://neal.fun/spend/images/m1-abrams.jpg" },
+            { name: "Formula 1 Car", price: 15000000, image: "https://neal.fun/spend/images/formula-1-car.jpg" },
+            { name: "Apache Helicopter", price: 31000000, image: "https://neal.fun/spend/images/apache-helicopter.jpg" },
+            { name: "Mansion", price: 45000000, image: "https://neal.fun/spend/images/mansion.jpg" },
+            { name: "Make a Movie", price: 100000000, image: "https://neal.fun/spend/images/make-a-movie.jpg" },
+            { name: "Boeing 747", price: 148000000, image: "https://neal.fun/spend/images/boeing-747.jpg" },
+            { name: "Mona Lisa", price: 780000000, image: "https://neal.fun/spend/images/mona-lisa.jpg" },
+            { name: "Skyscraper", price: 850000000, image: "https://neal.fun/spend/images/skyscraper.jpg" },
+            { name: "Cruise Ship", price: 930000000, image: "https://neal.fun/spend/images/cruise-ship.jpg" },
+            { name: "NBA Team", price: 2120000000, image: "https://neal.fun/spend/images/nba-team.jpg" }
+        ];
+
+        // Game variables
+        let totalMoney = 200000000000;
+        let spent = 0;
+        const cart = {};
+
+        // Format currency function
+        function formatMoney(amount) {
+            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(amount);
+        }
+
+        // Update counters
+        function updateCounters() {
+            document.getElementById('spent-amount').textContent = formatMoney(spent);
+            document.getElementById('remaining-amount').textContent = formatMoney(totalMoney - spent);
+            document.querySelector('.money-amount').textContent = formatMoney(totalMoney - spent);
+        }
+
+        // Create item cards
+        function createItemCards() {
+            const container = document.getElementById('items-container');
+            
+            items.forEach(item => {
+                // Initialize cart
+                cart[item.name] = 0;
+                
+                // Create item card
+                const card = document.createElement('div');
+                card.className = 'item-card rounded-xl overflow-hidden flex flex-col';
+                
+                // Card content
+                card.innerHTML = `
+                    <div class="overflow-hidden" style="height: 180px;">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-xl font-semibold mb-2">${item.name}</h3>
+                        <p class="text-2xl font-bold text-blue-400 mb-4">${formatMoney(item.price)}</p>
+                        
+                        <div class="flex items-center justify-between">
+                            <button class="sell-btn btn-counter rounded-lg px-3 py-2 text-white font-semibold disabled:opacity-50" 
+                                data-item="${item.name}" data-action="sell" disabled>
+                                Sell
+                            </button>
+                            
+                            <span class="qty-display inline-block rounded-lg px-3 py-2 text-white font-semibold">0</span>
+                            
+                            <button class="buy-btn btn-counter rounded-lg px-3 py-2 text-white font-semibold" 
+                                data-item="${item.name}" data-action="buy">
+                                Buy
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+                
+                // Add event listeners to buttons
+                const buyBtn = card.querySelector('[data-action="buy"]');
+                const sellBtn = card.querySelector('[data-action="sell"]');
+                
+                buyBtn.addEventListener('click', () => buyItem(item, card));
+                sellBtn.addEventListener('click', () => sellItem(item, card));
+            });
+        }
+
+        // Buy item
+        function buyItem(item, card) {
+            const remaining = totalMoney - spent;
+            
+            if (item.price <= remaining) {
+                cart[item.name]++;
+                spent += item.price;
+                
+                const qtyDisplay = card.querySelector('.qty-display');
+                const sellBtn = card.querySelector('[data-action="sell"]');
+                
+                qtyDisplay.textContent = cart[item.name];
+                sellBtn.disabled = false;
+                
+                updateCounters();
+                checkAffordability();
+            }
+        }
+
+        // Sell item
+        function sellItem(item, card) {
+            if (cart[item.name] > 0) {
+                cart[item.name]--;
+                spent -= item.price;
+                
+                const qtyDisplay = card.querySelector('.qty-display');
+                const sellBtn = card.querySelector('[data-action="sell"]');
+                
+                qtyDisplay.textContent = cart[item.name];
+                if (cart[item.name] === 0) {
+                    sellBtn.disabled = true;
+                }
+                
+                updateCounters();
+                checkAffordability();
+            }
+        }
+
+        // Check if items are affordable
+        function checkAffordability() {
+            const remaining = totalMoney - spent;
+            
+            items.forEach(item => {
+                const buyBtns = document.querySelectorAll(`[data-item="${item.name}"][data-action="buy"]`);
+                buyBtns.forEach(btn => {
+                    btn.disabled = item.price > remaining;
+                });
+            });
+        }
+
+        // Reset game function
+        function resetGame() {
+            spent = 0;
+            for (const item in cart) {
+                cart[item] = 0;
+            }
+            
+            // Reset all quantity displays
+            document.querySelectorAll('.qty-display').forEach(el => {
+                el.textContent = '0';
+            });
+            
+            // Disable all sell buttons
+            document.querySelectorAll('.sell-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            updateCounters();
+            checkAffordability();
+        }
+
+        // Initialize the game
+        function initGame() {
+            createStarfield();
+            createItemCards();
+            updateCounters();
+            
+            // Add reset button event listener
+            document.getElementById('reset-btn').addEventListener('click', resetGame);
+        }
+
+        // Start the game
+        document.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>
